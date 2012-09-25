@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Michael G. Rodecker
+       September 26, 2012
+       Introduction to Programming
+       Project 2  -->
+  <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Michael G. Rodecker" />
+      <title>Apocalypse! on the Hudson</title>
+      <style>
+          body     {background: black;}
+          h1       {font-family: monospace; color: darkgreen;}
+          p        {font-family: Monospace; background-color: black; color: white;
+                    width: 600pt; height: 150pt; border-color: black; font-size: 130%;}
+          textarea {font-family: Monospace; background-color: black; color: white;
+                    border-color: white; font-size: 130%;}
+      </style>
+      <script type="text/JavaScript">
+      
+      var score = 0;
+      var north;
+      var south;
+      var east;
+      var west;
+      
+      function increment_score() {
+        score = score + 5;
+      }
+     
+      function get_score() {
+        alert(score);
+      }
+      // this updates the textarea 
+      function updateDisplay(message) {
+         var ta = document.getElementById("taGame");
+         ta.value = ">" + " " + message + "\n" + ta.value;
+      }
+      
+      function north_btn() {
+      
+        var message = "You see nothing but water and trees.";
+        updateDisplay(message);
+        alert(message);
+            if (!north) {
+              increment_score();
+              north = true;}
+      }
+      
+      function south_btn() {
+      
+        var message = "You see nothing but water and trees, however, to the South between two trees you see what appears to be a group of people.";
+        updateDisplay(message);
+        alert(message);
+            if (!south) {
+              increment_score();
+              south = true;}
+      }
+      
+      function east_btn() {
+      
+        var message = "There is a big forested hill.";
+        updateDisplay(message);
+        alert(message);
+            if (!east) {
+              increment_score();
+              east = true;}
+      }
+      
+      function west_btn() {
+      
+        var message = "To go this way you will have to swim across the Hudson or find another way.";
+        updateDisplay(message);
+        alert(message);
+            if (!west) {
+              increment_score();
+              west = true;}
+      }
+      
+      
+      
+      </script>
+  </head>
+  <body> 
+      <h1>Michael Rodecker's: 
+      <br>
+          Apocalypse! on the Hudson: The Search for Booch's Breeches
+      <br>
+          version 0.2</h1>
+      <br>
+      
+
+      <textarea id="taGame" rows="10" cols="60">You are on the East bank of the Hudson River. There is a small fox nearby.  
+      </textarea>
+      
+      <br>
+      
+<!-- put a text input here -->
+      <br>
+      
+      <input type="button"
+             value="North"
+             onclick="north_btn();">
+      <input type="button"
+             value="South"
+             onclick="south_btn();">
+      <input type="button"
+             value="East"
+             onclick="east_btn();">
+      <input type="button"
+             value="West"
+             onclick="west_btn();">
+     
+      <br>
+      <br>
+      <input type="button"
+             value="Score"
+             onclick="get_score();">
+     
+     <p class="fullname">
+        Michael G. Rodecker
+        <br>
+        <a href="mailto:michael.rodecker1@marist.edu">Send me an email!</a> 
+     </p>
+  </body>
+  
+
+
+
+</html>
