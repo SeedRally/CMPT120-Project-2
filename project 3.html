@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Michael G. Rodecker
+       September 26, 2012
+       Introduction to Programming
+       Project 3  -->
+  <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Michael G. Rodecker" />
+      <title>Apocalypse! on the Hudson</title>
+      <style>
+          body     {background: black;}
+          h1       {font-family: monospace; color: darkgreen;}
+          h2       {font-family: monospace; color: white;}
+          p        {font-family: Monospace; background-color: black; color: white;
+                    width: 600pt; height: 150pt; border-color: black; font-size: 130%;}
+          textarea {font-family: Monospace; background-color: black; color: white;
+                    border-color: white; font-size: 130%;}
+          textCommand {font-family: monospace; color: white;}
+      </style>
+      <script type="text/JavaScript">
+      
+      var score  = 0;
+      // Direction constants used in the move function and 
+      // the button-click even handlers
+      var north  = false; 
+      var south  = false;
+      var east   = false;
+      var west   = false;
+      var climb  = 0;
+      
+      var cannotGo = "You cannot go that way!";
+      var mylocation = 0;
+     
+      function increment_score() {
+        score = score + 5;
+      }
+     
+      function get_score() {
+        updateDisplay("Your score is " + score);
+        // alert(score);
+        
+      }
+      // this updates the textarea 
+      function updateDisplay(message) {
+         message = message + " [" + mylocation + "]";
+         var ta = document.getElementById("taGame");
+         ta.value = ">:" + " " + message + "\n" + ta.value;
+         
+      }
+      
+      function north_btn() {
+      
+        var message = "You see nothing but water and trees.";
+        var messageTwo = "You have come to an opening where you see a house to the EAST.";
+         // alert(message);
+            if (north===false) {
+              mylocation = 1; 
+              updateDisplay(message);
+              increment_score();
+              north = true;
+              east = 5;
+              south = 2;
+              west = 2; 
+              } else if (north===true) {
+                   updateDisplay(messageTwo);
+                   increment_score();
+                   north = 1;
+                   east = 1;
+              } else if (north===1) {
+                   updateDisplay(cannotGo);
+              }
+      }    
+      
+      function south_btn() {
+      
+        var message = "You see nothing but water and trees. There's definitely nothing this way.";
+        var messageTwo = "There are still trees. Seriously, there's nothing over here.";
+        // alert(message);
+            if (south===false) {
+              updateDisplay(message);
+              increment_score();
+              south = 1;
+              } else if (south===1) {
+                updateDisplay(messageTwo);
+                increment_score();
+                south = 2;
+              } else if (south===2) {
+                updateDisplay(cannotGo);
+              }
+      }
+      
+      function east_btn() {
+      
+        var message = "There is a big forested hill which will take about 2 days to hack though. You should probably go another way.";
+        var messageTwo = "You have arrived at the SOUTH end of the house. To the WEST you see a side door that may be ajar...";
+        // alert(message);
+            if (east===false) {
+              updateDisplay(message);
+              increment_score();
+              east = 5;
+            } else if (east===1) {
+               updateDisplay(messageTwo);
+               increment_score();
+               east = 5;
+               west = 3;
+            } else if (east===5) {
+               updateDisplay(cannotGo);
+            }
+      }
+      
+      function west_btn() {
+      
+        var message = "To go this way you will have to swim across the Hudson. And let's be honest, you're not physically fit enough to do it...";
+        var messageTwo = "You see that the door is open, however, there is a giant pile of debris blocking you from entering."
+        var messageThree = "You see a window that is wide open." 
+        // alert(message);
+            if (west===false) {
+              updateDisplay(message);
+              increment_score();
+              west = 2;
+              } else if (west===3) {
+               updateDisplay(messageTwo);
+               increment_score();
+               west = 4; 
+              } else if (west===4) {
+               updateDisplay(messageThree);
+               increment_score();
+               west = 2; 
+              } else if (west===2) {
+                  updateDisplay(cannotGo);
+              } 
+              
+      }
+      
+      function climb_through() {
+        var message = "You have climbed through the window (barely.) As you gracefully fell to the floor, you find yourself in the first floor bathroom.";
+          if (climb===0) {
+             updateDisplay(message);
+             increment_score();
+             climb = 1;
+          }
+      }
+      function room_bathroom() {
+        var message = "Um maybe you should wait. There are more pressing matters...";
+        if (climb===1) {
+          updateDisplay(message);
+        }
+      }
+      function invalid_response() {
+        var message = "I do not understand that command.";
+        updateDisplay(message);
+      }
+      
+      
+      function btn_enter_click() {
+        var txt = document.getElementById("txtCommand");
+        //alert(txt.value);
+        updateDisplay(txt.value);
+        if (txt.value==="N" || txt.value==="n") {
+            north_btn();
+          } else if (txt.value==="S" || txt.value==="s") {
+            south_btn();
+          } else if (txt.value==="E" || txt.value==="e") {
+            east_btn();   
+          } else if (txt.value==="W" || txt.value==="w") {
+            west_btn();
+          } else if (txt.value==="Score" || txt.value==="score") {
+            get_score();
+          } else if (txt.value==="Climb" || txt.value==="climb") {
+            climb_through();
+          } else if (txt.value==="go to bathroom" && climb===1) {
+            room_bathroom();
+          } else {
+            invalid_response();
+          } 
+          
+        txt.value="";
+        // need if statement for when an empty
+        // string is input for it to not submit
+        // anything to the display.
+      }
+      
+      
+      </script>
+  </head>
+  <body> 
+      <h1>Michael Rodecker's: 
+      <br>
+          Apocalypse! on the Hudson: The Search for Booch's Breeches
+      <br>
+          version 0.2</h1>
+      <br>
+      
+
+      <textarea id="taGame" rows="12" cols="70">You are on the East bank of the Hudson River. There is a small fox nearby.  
+      </textarea>
+      
+      <br>
+      <h2>Enter Command:</h2>
+      <input type="text" 
+             id="txtCommand" 
+             onKeydown="if (event.keyCode==13) btn_enter_click();"
+             placeholder="Enter Text Here..."
+             maxlength="20">
+      
+      <input type="button"
+             value="Enter"
+             onclick="btn_enter_click()">
+             
+      <br>
+      
+      <input type="button"
+             value="North"
+             onclick="north_btn();">
+      <input type="button"
+             value="South"
+             onclick="south_btn();">
+      <input type="button"
+             value="East"
+             onclick="east_btn();">
+      <input type="button"
+             value="West"
+             onclick="west_btn();">
+     
+      <br>
+      <br>
+      <input type="button"
+             value="Score"
+             onclick="get_score();">
+      
+     <p class="fullname">
+        Michael G. Rodecker
+        <br>
+        <a href="mailto:michael.rodecker1@marist.edu">Send me an email!</a> 
+     </p>
+  </body>
+  
+
+
+
+</html>
