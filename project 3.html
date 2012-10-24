@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <!-- Michael G. Rodecker
-       September 26, 2012
+       October 24, 2012
        Introduction to Programming
-       Project 3  -->
+       Project 3 Codename: "Awesome-sauce" -->
   <head>
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
       <meta name="author" content="Michael G. Rodecker" />
@@ -14,8 +14,8 @@
           h2       {font-family: monospace; color: white;}
           p        {font-family: Monospace; background-color: black; color: white;
                     width: 600pt; height: 150pt; border-color: black; font-size: 130%;}
-          textarea {font-family: Monospace; background-color: black; color: white;
-                    border-color: white; font-size: 130%;}
+          textarea {font-family: Monospace; background-color: black; color: darkgreen;
+                    border: none; font-size: 130%; padding: 10px; font-size: 13.5pt;}
           textCommand {font-family: monospace; color: white;}
       </style>
       <script type="text/JavaScript">
@@ -27,15 +27,15 @@
       var south  = false;
       var east   = false;
       var west   = false;
-      var climb  = 0;
+      var clear  = ""; 
       
       var cannotGo = "You cannot go that way!";
-      var mylocation = 0;
+      var myLocation = 0;
      
       function increment_score() {
         score = score + 5;
       }
-     
+      // this shows the score to the user
       function get_score() {
         updateDisplay("Your score is " + score);
         // alert(score);
@@ -43,110 +43,82 @@
       }
       // this updates the textarea 
       function updateDisplay(message) {
-         message = message + " [" + mylocation + "]";
+         message = message + " [" + myLocation + "]";
          var ta = document.getElementById("taGame");
          ta.value = ">:" + " " + message + "\n" + ta.value;
          
       }
       
-      function north_btn() {
+      // when user types "clear" textarea is...well, cleared.
+      function clearTextArea() {
+         var textArea = document.getElementById("taGame");
+         textArea.value = ">: " + "";
+      }
       
+      function north_btn() {
         var message = "You see nothing but water and trees.";
-        var messageTwo = "You have come to an opening where you see a house to the EAST.";
+        var messageTwo = "This is the second message for NORTH.";
          // alert(message);
             if (north===false) {
-              mylocation = 1; 
+              myLocation = 1;
               updateDisplay(message);
               increment_score();
               north = true;
-              east = 5;
-              south = 2;
-              west = 2; 
-              } else if (north===true) {
-                   updateDisplay(messageTwo);
-                   increment_score();
-                   north = 1;
-                   east = 1;
-              } else if (north===1) {
-                   updateDisplay(cannotGo);
-              }
+              } else if (myLocation===1) {
+                myLocation = 5;
+                updateDisplay(messageTwo);
+                increment_score(); 
+                north = true;
+                } else if (north===true) {
+                  updateDisplay(cannotGo);
+                  }
       }    
       
       function south_btn() {
-      
         var message = "You see nothing but water and trees. There's definitely nothing this way.";
-        var messageTwo = "There are still trees. Seriously, there's nothing over here.";
+        var messageTwo = "Seriously dude, there's nothing over here.";
         // alert(message);
             if (south===false) {
+              myLocation = 3;
               updateDisplay(message);
               increment_score();
-              south = 1;
-              } else if (south===1) {
-                updateDisplay(messageTwo);
-                increment_score();
-                south = 2;
-              } else if (south===2) {
-                updateDisplay(cannotGo);
-              }
+              south = true;
+              } else if (myLocation===3 && south===true) {
+                  myLocation = 6;
+                  updateDisplay(messageTwo);
+                  increment_score();
+                  south = true;
+                } else if (south===true) {
+                    updateDisplay(cannotGo);
+                  }
       }
       
       function east_btn() {
-      
         var message = "There is a big forested hill which will take about 2 days to hack though. You should probably go another way.";
-        var messageTwo = "You have arrived at the SOUTH end of the house. To the WEST you see a side door that may be ajar...";
         // alert(message);
             if (east===false) {
+              myLocation = 2;
               updateDisplay(message);
               increment_score();
-              east = 5;
-            } else if (east===1) {
-               updateDisplay(messageTwo);
-               increment_score();
-               east = 5;
-               west = 3;
-            } else if (east===5) {
+              east = true;
+            } else if (east===true) {
                updateDisplay(cannotGo);
             }
       }
       
       function west_btn() {
-      
         var message = "To go this way you will have to swim across the Hudson. And let's be honest, you're not physically fit enough to do it...";
-        var messageTwo = "You see that the door is open, however, there is a giant pile of debris blocking you from entering."
-        var messageThree = "You see a window that is wide open." 
         // alert(message);
             if (west===false) {
+              myLocation = 4;
               updateDisplay(message);
               increment_score();
-              west = 2;
-              } else if (west===3) {
-               updateDisplay(messageTwo);
-               increment_score();
-               west = 4; 
-              } else if (west===4) {
-               updateDisplay(messageThree);
-               increment_score();
-               west = 2; 
-              } else if (west===2) {
+              west = true;
+              } else if (west===true) {
                   updateDisplay(cannotGo);
-              } 
-              
+                } 
       }
       
-      function climb_through() {
-        var message = "You have climbed through the window (barely.) As you gracefully fell to the floor, you find yourself in the first floor bathroom.";
-          if (climb===0) {
-             updateDisplay(message);
-             increment_score();
-             climb = 1;
-          }
-      }
-      function room_bathroom() {
-        var message = "Um maybe you should wait. There are more pressing matters...";
-        if (climb===1) {
-          updateDisplay(message);
-        }
-      }
       function invalid_response() {
         var message = "I do not understand that command.";
         updateDisplay(message);
@@ -167,11 +139,9 @@
             west_btn();
           } else if (txt.value==="Score" || txt.value==="score") {
             get_score();
-          } else if (txt.value==="Climb" || txt.value==="climb") {
-            climb_through();
-          } else if (txt.value==="go to bathroom" && climb===1) {
-            room_bathroom();
-          } else {
+          } else if (txt.value==="Clear" || txt.value==="clear") {
+            clearTextArea();
+          } else {  
             invalid_response();
           } 
           
@@ -189,11 +159,11 @@
       <br>
           Apocalypse! on the Hudson: The Search for Booch's Breeches
       <br>
-          version 0.2</h1>
+          version 0.6</h1>
       <br>
       
 
-      <textarea id="taGame" rows="12" cols="70">You are on the East bank of the Hudson River. There is a small fox nearby.  
+      <textarea id="taGame" rows="12" cols="85">>: You are on the East bank of the Hudson River. There is a small fox nearby. [0]  
       </textarea>
       
       <br>
@@ -212,16 +182,23 @@
       
       <input type="button"
              value="North"
-             onclick="north_btn();">
+             onclick="north_btn();"
+             id="northBtn";>
+             
       <input type="button"
              value="South"
-             onclick="south_btn();">
+             onclick="south_btn();"
+             id="southBtn";>
+             
       <input type="button"
              value="East"
-             onclick="east_btn();">
+             onclick="east_btn();"
+             id="eastBtn";>
+             
       <input type="button"
              value="West"
-             onclick="west_btn();">
+             onclick="west_btn();"
+             id="westBtn";>
      
       <br>
       <br>
