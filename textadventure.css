@@ -1,0 +1,8 @@
+body        {background: black;}
+h1          {font-family: monospace; color: darkgreen;}
+h2          {font-family: monospace; color: white;}
+p           {font-family: Monospace; background-color: black; color: white;
+               width: 600pt; height: 150pt; border-color: black; font-size: 130%;}
+textarea    {font-family: Ubuntu, sans-serif; background-color: black; 
+               color: darkgreen; border: none; font-size: 130%; padding: 10px; font-size: 13.5pt;}
+textCommand {font-family: monospace; color: white;}
