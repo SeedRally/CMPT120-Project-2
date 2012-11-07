@@ -14,9 +14,10 @@
             href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">      
       
       <script type="text/JavaScript" src="locations.js"> </script>
-     
+      <script type="text/JavaScript" src="navigation.js"></script>
+      <script type="text/JavaScript" src="gamelogic.js"></script>
   </head>
-  <body> 
+  <body onload="init()"> 
       <h1>Michael Rodecker's: 
       <br>
           Apocalypse! on the Hudson: The Search for Booch's Breeches
@@ -24,9 +25,10 @@
           version 0.6</h1>
       <br>
       
-
-      <textarea id="taGame" rows="12" cols="85">>: You are on the East bank of the Hudson River. There is a small fox nearby. Type "help" if you're stuck. [0]  
-      </textarea>
+      
+      <textarea id="taGame" rows="12" cols="85"> </textarea>
+      
+      <img src="textadventure_map.jpg" width=275 height=275>
       
       <br>
       <h2>Enter Command:</h2>
@@ -39,34 +41,43 @@
       <input type="button"
              value="Enter"
              onclick="btn_enter_click()">
-             
+    
+      <input type="button"
+             value="Inventory"
+             onclick="displayInventory();"
+             id="invBtn"
+             disabled="false">
+     
+      <input type="button"
+             value="Score"
+             onclick="get_score();">
       <br>
       
       <input type="button"
              value="North"
              onclick="north_btn();"
              id="northBtn">
-             
-      <input type="button"
-             value="South"
-             onclick="south_btn();"
-             id="southBtn">
-             
-      <input type="button"
-             value="East"
-             onclick="east_btn();"
-             id="eastBtn">
+      
+      <br>
              
       <input type="button"
              value="West"
              onclick="west_btn();"
              id="westBtn">
      
-      <br>
-      <br>
       <input type="button"
-             value="Score"
-             onclick="get_score();">
+             value="East"
+             onclick="east_btn();"
+             id="eastBtn">
+
+      <br>
+
+      <input type="button"
+             value="South"
+             onclick="south_btn();"
+             id="southBtn">
+      <br>
+      <br>
              
      <p class="fullname">
         Michael G. Rodecker

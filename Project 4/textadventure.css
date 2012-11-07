@@ -6,3 +6,7 @@ p           {font-family: Monospace; background-color: black; color: white;
 textarea    {font-family: Ubuntu, sans-serif; background-color: black; 
                color: darkgreen; border: none; font-size: 130%; padding: 10px; font-size: 13.5pt;}
 textCommand {font-family: monospace; color: white;}
+#northBtn    {width: 100px; height: 30px;}
+#southBtn    {width: 100px; height: 30px;}
+#eastBtn     {height: 25px;}
+#westBtn     {height: 25px;}
