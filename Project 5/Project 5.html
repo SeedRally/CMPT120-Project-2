@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Michael G. Rodecker
+       November 28, 2012
+       Introduction to Programming
+       Project 5  -->
+  <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Michael G. Rodecker" />
+      <title>Apocalypse! on the Hudson</title>
+      <link rel="stylesheet" href="textadventure.css" media="screen"/>
+      <link rel="stylesheet" 
+            type="text/css" 
+            href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">      
+      
+      <script type="text/JavaScript" src="locations.js"> </script>
+      <script type="text/JavaScript" src="navigation.js"></script>
+      <script type="text/JavaScript" src="gamelogic.js"></script>
+      <script type="text/JavaScript" src="locationobject.js"></script>
+  </head>
+  <body onload="init()"> 
+      <h1>Michael Rodecker's: 
+      <br>
+          Apocalypse! on the Hudson: The Search for Booch's Breeches
+      <br>
+          version 0.8</h1>
+      <br>
+      
+      
+      <textarea id="taGame" rows="12" cols="85"> </textarea>
+      
+      <img src="textadventure_map.jpg" width=275 height=275>
+      
+      <br>
+      <h2>Enter Command:</h2>
+      <input type="text" 
+             id="txtCommand" 
+             onKeydown="if (event.keyCode==13) btn_enter_click();"
+             placeholder="Enter Text Here..."
+             maxlength="20">
+      
+      <input type="button"
+             value="Enter"
+             onclick="btn_enter_click()">
+    
+      <input type="button"
+             value="Inventory"
+             onclick="displayInventory();"
+             id="invBtn"
+             disabled="false">
+     
+      <input type="button"
+             value="Score"
+             onclick="get_score();">
+      <br>
+      
+      <input type="button"
+             value="North"
+             onclick="move(NORTH);"
+             id="northBtn">
+      
+      <br>
+             
+      <input type="button"
+             value="West"
+             onclick="move(WEST);"
+             id="westBtn">
+     
+      <input type="button"
+             value="East"
+             onclick="move(EAST);"
+             id="eastBtn">
+
+      <br>
+
+      <input type="button"
+             value="South"
+             onclick="move(SOUTH);"
+             id="southBtn">
+      <br>
+      <br>
+             
+     <p class="fullname">
+        Michael G. Rodecker
+        <br>
+        <a href="mailto:michael.rodecker1@marist.edu">Send me an email!</a> 
+     </p>
+  </body>
+  
+
+
+
+</html>
