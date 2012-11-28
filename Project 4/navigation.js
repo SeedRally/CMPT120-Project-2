@@ -1,10 +1,10 @@
 var score  = 0;
  // Direction constants used in the move function and 
  // the button-click even handlers
-var north      = false; 
-var south      = false;
-var east       = false;
-var west       = false;
+var north      = 0; 
+var south      = 1;
+var east       = 2;
+var west       = 3;
 var clear      = ""; 
 var scoreLocOne   = 0;
 var scoreLocTwo   = 0;
@@ -19,7 +19,61 @@ var scoreLocTen   = 0;
       
 var cannotGo = "You cannot go that way!";
 var myLocation = 0;
-  
+
+
+var nav = [        //  N   S   E   W
+          /* 0 */    [ 1,  3,  2,  4],
+          /* 1 */    [ 5,  1, -1, -1],
+          /* 2 */    [-1, -1, -1,  0],
+          /* 3 */    [ 0,  6,  8, -1],
+          /* 4 */    [-1, -1,  0, -1],
+          /* 5 */    [-1,  1,  9, -1],
+          /* 6 */    [ 3,  7, -1, -1],
+          /* 7 */    [ 6, -1, -1, -1],
+          /* 8 */    [-1, -1, -1,  3],
+          /* 9 */    [-1, 10, -1,  5],
+          /*10 */    [ 9, -1, -1, -1],   
+          ]
+          
+function move(direction) {
+  // displayArray(nav)
+  var newLocation = nav[myLocation][direction];
+  if (newLocation !== -1) {
+    myLocation = newLocation;
+    displayNewLocation();
+  } else {
+    updateDisplay("You cannot go that way!");
+  } 
+}            
+/* 
+function displayNewLocation() {
+  switch (myLocation) {
+    case  0 : locationZero(); 
+        break;
+    case  1 : locationOne(); 
+        break;
+    case  2 : locationTwo();
+        break;
+    case  3 : locationThree();
+        break;
+    case  4 : locationFour();
+        break;
+    case  5 : locationFive();
+        break;
+    case  6 : locationSix();
+        break;
+    case  7 : locationSeven();
+        break;
+    case  8 : locationEight();
+        break;
+    case  9 : locationNine();
+        break;
+    case 10 : locationTen();
+        break;
+    default : invalid_response();
+  }
+}            
+*/ 
   function increment_score() {
     score = score + 5;
   }
@@ -36,7 +90,7 @@ var myLocation = 0;
     ta.value = ">:" + " " + message + "\n" + ta.value;
   }
       
-  // when user types "clear" textarea is...well, cleared.
+  // when user types "clear" textarea is cleared.
   function clearTextArea() {
     var textArea = document.getElementById("taGame");
     textArea.value = ">: " + "";
@@ -186,6 +240,8 @@ var myLocation = 0;
          updateDisplay(cannotGo);
        } 
   }
+
+
  
   function cannotDoThat() {
     updateDisplay("You can't do that!");

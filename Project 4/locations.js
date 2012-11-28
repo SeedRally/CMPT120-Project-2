@@ -3,13 +3,13 @@
 */
 
 function locationZero() {
-  myLocation = 0;
-  updateDisplay("You are about a mile WEST of the bank of the Hudson River. Type 'help' if you're stuck. [0]");
-  if (!playerHasFox) {
-  updateDisplay("You notice there is a small fox nearby.");
-  } else {
-      updateDisplay("There are claw marks on the ground...");
-    }
+//  myLocation = 0;
+//  updateDisplay("You are about a mile WEST of the bank of the Hudson River. Type 'help' if you're stuck. [0]");
+//  if (!playerHasFox) {
+//  updateDisplay("You notice there is a small fox nearby.");
+//  } else {
+//      updateDisplay("There are claw marks on the ground...");
+//    }
 }
 
     
