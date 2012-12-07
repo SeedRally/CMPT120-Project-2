@@ -14,16 +14,14 @@ function Location(_id, _name, _description, _item) {
     this.toString = function() {
         var retVal = "";
         retVal = "Name: " + this.name               + "\n" +
-                 "Description: " + this.description + "\n" +
-                 "Item: " +     this.item + "\n";   
+                 ">: Description: " + this.description + "\n" +
+                 ">: Item: " +     this.item + "\n";   
                  
         return retVal; 
       
     }
     
 }
-
-
 
 var locationArray = new Array(); 
 
@@ -43,20 +41,21 @@ var nav = [       //  N   S   E   W
           /*10 */    [ 9, -1, -1, -1],   
           ]
           
-var inv = new Array();
+var itemArray = new Array();
  
-function item (_id, _name, _description) {
+function item (_id, _name, _description, _locationFound) {
   // Attributes
-  this.id           = _id;
-  this.name         = _name;
-  this.description  = _description;
+  this.id            = _id;
+  this.name          = _name;
+  this.description   = _description;
+  this.locationFound = _locationFound;
   
   // Behaviors
   this.toString = function() {
     var retVal = ""; 
-    retVal = "Location Found: "    + "\n" +
-             "Name: "              + "\n" +
-             "Description: "       + "\n";
+    retVal = "Location Found: " + this.locationFound    + "\n" +
+             "Name: "           + this.name             + "\n" +
+             "Description: "    + this.description      + "\n";
              
       return retVal; 
   }
@@ -68,25 +67,30 @@ function item (_id, _name, _description) {
     Map       = new item("2", "Map", "It's brand new. Like it's super shiny.");
     Spatula   = new item("3", "Spatula", "There's some crusty stuff on it. It looks pretty good.");
   
-    inv[0] = Fox;
-    inv[1] = Knapsack;
-    inv[2] = Map; 
-    inv[3] = Spatula;
+
+    itemArray[0] = Fox;
+    itemArray[1] = Knapsack;
+    itemArray[2] = Map; 
+    itemArray[3] = Spatula;
   
   }
+  
+  var inventory = new Array();
+    
+  
 
   function instantiateLocations() {
     Loc0  = new Location("0",  "Location 0", "This is location number ZERO.",  "There's a small fox nearby.");
-    Loc1  = new Location("1",  "Location 1", "This is location number ONE.",   null);
-    Loc2  = new Location("2",  "Location 2", "This is location number TWO.",   null);
-    Loc3  = new Location("3",  "Location 3", "This is location number THREE.", null); 
-    Loc4  = new Location("4",  "Location 4", "This is location number FOUR.",  null);
-    Loc5  = new Location("5",  "Location 5", "This is location number FIVE.",  null); 
-    Loc6  = new Location("6",  "Location 6", "This is location number SIX.",   null); 
+    Loc1  = new Location("1",  "Location 1", "This is location number ONE.",   "Nothing here!");
+    Loc2  = new Location("2",  "Location 2", "This is location number TWO.",   "Nothing here!");
+    Loc3  = new Location("3",  "Location 3", "This is location number THREE.", "Nothing here!"); 
+    Loc4  = new Location("4",  "Location 4", "This is location number FOUR.",  "Nothing here!");
+    Loc5  = new Location("5",  "Location 5", "This is location number FIVE.",  "Nothing here!"); 
+    Loc6  = new Location("6",  "Location 6", "This is location number SIX.",   "Nothing here!"); 
     Loc7  = new Location("7",  "Location 7", "This is location number SEVEN.", "There's a cabin. The door is open and you see a Knapsack."); 
     Loc8  = new Location("8",  "Location 8", "This is location number EIGHT.", "Item time! It's a map!"); 
-    Loc9  = new Location("9",  "Location 9", "This is location number NINE.",  "There's an item here! Your lucky day! It's a spatula!"); 
-    Loc10 = new Location("10", "Location 10", "This is location number TEN.",  null); 
+    Loc9  = new Location("9",  "Location 9", "You are at the HOUSE. There is a man standing outside watering flowers",  "Nothing here!"); 
+    Loc10 = new Location("10", "Location 10", "This is location number TEN.",  "There's an item here! Your lucky day! It's a spatula!"); 
     
   
     locationArray[0]  = Loc0;

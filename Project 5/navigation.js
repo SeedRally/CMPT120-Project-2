@@ -91,16 +91,25 @@ var myLocation = 0;
    case "HELP" : 
         helpMenu();
         break;
+   case "LOOK" : 
+        lookAtItem(); 
+        break;   
    case "INVENTORY" :
-        displayInventory();
+// create an if/else construct to lock/unlock the inventory
+        if (playerHasKnapsack === true) {
+          displayInventory();
+        } else updateDisplay("You currently do not have an inventory!");
+        break;
+   case "TALK MAN" :
+        talkBooch();
         break;
    case "TAKE SPATULA" :
-        if (myLocation === 9) {
-          itemSpatula();
+        if ( (playerHasInventory === true) && (myLocation === 10) ) {
+         itemSpatula(); 
         } else cannotDoThat();
         break;
    case "TAKE MAP" :
-        if (myLocation === 8) {
+        if ((playerHasInventory === true) && (myLocation === 8)) {
           itemMap();
         } else cannotDoThat();
         break;
@@ -110,8 +119,8 @@ var myLocation = 0;
         } else cannotDoThat();
         break;
    case "TAKE FOX" :
-        if (myLocation === 0) {
-          itemFox(); // write a for-loop so that the fox can only be taken once? 
+        if ((playerHasInventory === true) && (myLocation === 0)) {
+          itemFox();  
         } else cannotDoThat();
         break;
     default : 

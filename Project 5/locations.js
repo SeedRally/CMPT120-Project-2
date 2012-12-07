@@ -2,8 +2,6 @@
 *  locations.js
 */
 
-var currentLocationX = 2; 
-var currentLocationY = 4; 
 
 function locationZero() {
   myLocation = 0;
@@ -14,7 +12,6 @@ function locationZero() {
       updateDisplay("There are claw marks on the ground...");
     }
 }
-
     
 function locationOne() {
   myLocation = 1;
