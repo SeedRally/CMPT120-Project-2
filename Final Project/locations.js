@@ -5,9 +5,9 @@
 
 function locationZero() {
   myLocation = 0;
-  updateDisplay("You are about a mile WEST of the bank of the Hudson River. Type 'help' if you're stuck. [0]");
+  updateDisplay("You are about a mile WEST of the bank of the Hudson River. Type 'help' if you're stuck. [This is location 0]");
   if (!playerHasFox) {
-  updateDisplay("You notice there is a small fox nearby.");
+  updateDisplay("You notice there is a small fox nearby. He's holding a balloon that says 'HAPPY BIRTHDAY'. Weird...");
   } else {
       updateDisplay("There are claw marks on the ground...");
     }
@@ -43,6 +43,11 @@ function locationThree() {
 function locationFour() {
   myLocation = 4;
   updateDisplay("There is a big forested hill which will take about 2 days to hack though. You should probably go another way. [4]");
+  if (!playerHasBreeches) {
+    updateDisplay("blah blah");
+  } else {
+     updateDisplay("No more item.");
+    }
   if (!checkLocFour) {
     checkLocFour = true;
     increment_score();

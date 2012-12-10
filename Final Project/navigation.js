@@ -60,7 +60,7 @@ var myLocation = 0;
     var message = "Welcome to the Help Menu!"; 
     var cmdExamples = "The game inputs are directed with one to two-word commands. "
                     +  "Examples: 'N', 'S', 'E', or 'W' for directions"
-                    +  " 'score', 'clear', 'inventory', 'take [ item ]'.";
+                    +  " 'score', 'clear', 'give', 'talk [ ]', 'inventory', 'take [ item ]'.";
                     +  "Also, just try some commands that might make sense, it's likely they will work."
     updateDisplay(message + "\n" + cmdExamples);
   }
@@ -95,10 +95,16 @@ var myLocation = 0;
         lookAtItem(); 
         break;   
    case "INVENTORY" :
-// create an if/else construct to lock/unlock the inventory
         if (playerHasKnapsack === true) {
           displayInventory();
         } else updateDisplay("You currently do not have an inventory!");
+        break;
+   case "GIVE" : 
+        if ( (playerHasInventory === true) && (myLocation === 9) && (talkedToBooch === true) ) {
+          giveItem();
+        } else {
+           cannotDoThat();
+          }
         break;
    case "TALK MAN" :
         talkBooch();
@@ -107,6 +113,13 @@ var myLocation = 0;
         if ( (playerHasInventory === true) && (myLocation === 10) ) {
          itemSpatula(); 
         } else cannotDoThat();
+        break;
+   case "TAKE BREECHES" :
+        if ( (playerHasInventory === true) && (myLocation === 4) ) {
+          itemBreeches();
+        } else {
+           cannotDoThat();
+          }
         break;
    case "TAKE MAP" :
         if ((playerHasInventory === true) && (myLocation === 8)) {
